@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CadastroEventos.Views.Cadastro"
+             Title="Cadastro"
+             NavigationPage.HasNavigationBar="False"
+             Background="{StaticResource MeuGradiante}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <LinearGradientBrush x:Key="MeuGradiante" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="LightBlue" Offset="0.1"/>
+                <GradientStop Color="MediumSlateBlue" Offset="0.5"/>
+                <GradientStop Color="Lavender" Offset="1.0"/>
+            </LinearGradientBrush>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout VerticalOptions="CenterAndExpand"
+                             Padding="20"
+                             Spacing="20">
+
+            <Label Text="CADASTRO"
+                   FontFamily="Segoe UI"
+                   FontSize="30"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"/>
+
+            <Frame Padding="16"
+                   CornerRadius="12"
+                   BackgroundColor="White">
+
+                <VerticalStackLayout Spacing="20">
+
+                    <!-- Nome do Evento -->
+                    <Frame Padding="12"
+                       CornerRadius="12"
+                       BackgroundColor="White"
+                       HasShadow="True">
+
+                        <VerticalStackLayout Spacing="12">
+                            <Label Text="Nome do Evento:"
+                               TextColor="Black"/>
+
+                            <Frame CornerRadius="8"
+                                   BackgroundColor="White"
+                                   HasShadow="True"
+                                   Padding="0"
+                                   BorderColor="gray"
+                                   Margin="0">
+                                <Entry Text="{Binding Nome}"
+                                   Placeholder="Digite o nome do evento: "
+                                   TextColor="Black"
+                                   x:Name="NomeEvento"
+                                   Margin="5,0"/>
+                            </Frame>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Número de Participantes -->
+                    <Frame Padding="12"
+                       CornerRadius="12"
+                       BackgroundColor="White"
+                       HasShadow="True">
+
+                        <VerticalStackLayout Spacing="12">
+                            <Grid RowDefinitions="Auto, Auto"
+                            ColumnDefinitions="*, 2*, *">
+
+                                <Label Grid.Row="0" Grid.Column="0"
+                                   Text="Participantes:"
+                                   TextColor="Black"/>
+
+                                <Stepper Grid.Row="1" Grid.Column="1"
+                                     x:Name="stp_participantes"
+                                     Minimum="0"
+                                     Maximum="100"
+                                     Increment="1"
+                                     BackgroundColor="LightSteelBlue"/>
+
+                                <Label Grid.Row="1" Grid.Column="0"
+                                   Text="{Binding Source={x:Reference stp_participantes}, Path=Value}"
+                                   TextColor="Black"
+                                   FontSize="Medium" />
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Local do Evento -->
+                    <Frame Padding="12"
+                           CornerRadius="12"
+                           BackgroundColor="White"
+                           HasShadow="True">
+
+                        <VerticalStackLayout Spacing="12">
+                            <Label Text="Local do Evento:"
+                                   TextColor="Black"/>
+
+                            <Frame CornerRadius="8"
+                                   BackgroundColor="White"
+                                   HasShadow="True"
+                                   Padding="0"
+                                   BorderColor="gray"
+                                   Margin="0">
+                                
+                                <Entry Text="{Binding Local}" 
+                                   Placeholder="Digite o local do evento: " 
+                                   TextColor="Black" 
+                                   x:Name="LocalEvento"
+                                   Margin="5,0"/>
+                            </Frame>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Custo por Participante -->
+                    <Frame Padding="12"
+                           CornerRadius="12"
+                           BackgroundColor="White"
+                           HasShadow="True">
+                        <VerticalStackLayout Spacing="12">
+                            <Label Text="Custo por Participante (R$):"
+                                   TextColor="Black"/>
+
+                            <Frame CornerRadius="8"
+                               BackgroundColor="White"
+                               HasShadow="True"
+                               Padding="0"
+                               BorderColor="gray"
+                               Margin="0">
+                                <Entry Text="{Binding Custo}" 
+                                   Placeholder="R$" 
+                                   TextColor="Black"
+                                   x:Name="CustoEvento"/>
+                            </Frame>
+                        </VerticalStackLayout>
+                    </Frame>
+                    
+                    <!-- Período do Evento -->
+                    <Frame Padding="16"
+                       CornerRadius="12"
+                       BackgroundColor="White"
+                       HasShadow="True">
+                        <VerticalStackLayout Spacing="12">
+                            <Label Text="Período do Evento:"
+                               TextColor="Black"
+                               FontSize="16"
+                               VerticalOptions="Center"/>
+
+                            <HorizontalStackLayout Spacing="10"
+                               VerticalOptions="Center">
+                                <Label Text="Data de Início:"
+                                   TextColor="Black"
+                                   VerticalOptions="Center"/>
+
+                                <DatePicker x:Name="dtpck_dataInicio"
+                                    Format="dd/MM/yyyy"
+                                    TextColor="Black"
+                                    HorizontalOptions="FillAndExpand"
+                                    Background="LightSteelBlue"
+                                    DateSelected="dtpck_dataInicio_DateSelected"/>
+                            </HorizontalStackLayout>
+
+                            <HorizontalStackLayout Spacing="10"
+                               VerticalOptions="Center">
+                                <Label Text="Data de Término:"
+                                   TextColor="Black"
+                                   VerticalOptions="Center"/>
+                                
+                                <DatePicker x:Name="dtpck_dataTermino"
+                                Format="dd/MM/yyyy"
+                                TextColor="Black"
+                                HorizontalOptions="FillAndExpand"
+                                 Background="LightSteelBlue"/>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>    
+
+
+                    <!-- Botão Avançar -->
+                    <Button Text="AVANÇAR"
+                            BackgroundColor="LightSteelBlue"
+                            TextColor="White"
+                            CornerRadius="20"
+                            FontAttributes="Bold"
+                            Padding="10, 15"
+                            Clicked="BtAvancar_Clicked"/>
+
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
